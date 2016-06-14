@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-var nodeExternals = require('webpack-node-externals');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: ['webpack/hot/dev-server', './app/main.jsx'],
@@ -11,6 +11,9 @@ module.exports = {
     },
     module: {
         loaders: [{
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract('css!sass')
+        }, {
             test: /.jsx?$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
@@ -19,4 +22,9 @@ module.exports = {
             }
         }]
     },
+    plugins: [
+        new ExtractTextPlugin('styles.css', {
+            allChunks: true
+        })
+    ]
 };
