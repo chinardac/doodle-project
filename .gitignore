@@ -13,3 +13,6 @@ npm-debug.log*
 
 #public folder
 public
+
+#data folder
+data
