@@ -5,7 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node bin/server"
+    "start": "better-npm-run start",
+    "test:lint": "eslint . .js"
+  },
+  "betterScripts": {
+    "start": {
+      "command": "babel-node bin/server",
+      "env": {
+        "DEBUG": "app:*"
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -27,6 +36,7 @@
     "path": "^0.12.7",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "redux": "^3.6.0",
     "url": "^0.11.0",
     "webpack-dev-server": "^1.15.1",
     "winston": "^2.2.0"
@@ -39,6 +49,12 @@
     "babel-preset-react": "^6.5.0",
     "babel-register": "^6.9.0",
     "css-loader": "^0.23.1",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-react": "^6.2.0",
     "express-request-proxy": "^2.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "fs": "0.0.2",

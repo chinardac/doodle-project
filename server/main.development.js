@@ -13,33 +13,33 @@ import webpackHMRMiddleware from 'webpack-hot-middleware';
 const paths = config.utilsPaths;
 
 export const apply = (app) => {
-    const debug = _debug('app:server:webpack');
+  const debug = _debug('app:server:webpack');
 
-    debug('Enable webpack dev middleware and hot module replacement.');
+  debug('Enable webpack dev middleware and hot module replacement.');
 
-    const compiler = webpack(webpackConfig);
-    app.use(webpackHMRMiddleware(compiler));
+  const compiler = webpack(webpackConfig);
+  app.use(webpackHMRMiddleware(compiler));
 
-    app.use('/*', (req, res, next) => {
-        let suffix = '/';
+  app.use('/*', (req, res, next) => {
+    let suffix = '/';
 
-        if (/(\.(css|js|eot|woff2|woff|ttf|svg|png|jpg|ico))/.test(req.baseUrl)) {
-            suffix = req.baseUrl;
-        }
+    if (/(\.(css|js|eot|woff2|woff|ttf|svg|png|jpg|ico))/.test(req.baseUrl)) {
+      suffix = req.baseUrl;
+    }
 
-        proxy({ url: url.parse(`http://localhost:8081${suffix}`) })(req, res, next);
-    });
+    proxy({ url: url.parse(`http://localhost:8081${suffix}`) })(req, res, next);
+  });
 
-    const server = new WebpackDevServer(compiler, {
-        contentBase: paths.public(),
-        hot: true,
-        quiet: false,
-        noInfo: false,
-        stats: {
-            chunks: false,
-            colors: true
-        }
-    });
+  const server = new WebpackDevServer(compiler, {
+    contentBase: paths.public(),
+    hot: true,
+    quiet: false,
+    noInfo: false,
+    stats: {
+      chunks: false,
+      colors: true
+    }
+  });
 
-    server.listen(8081, 'localhost', _.noop);
+  server.listen(8081, 'localhost', _.noop);
 };

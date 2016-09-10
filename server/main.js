@@ -6,9 +6,9 @@ const app = express();
 const port = 3000;
 
 app.locals = {
-    hostname: 'localhost',
-    port,
-    protocol: 'http:'
+  hostname: 'localhost',
+  port,
+  protocol: 'http:'
 };
 
 app.use(logger);
