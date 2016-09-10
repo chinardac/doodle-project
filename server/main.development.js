@@ -5,9 +5,12 @@ import webpack from 'webpack';
 import proxy from 'express-request-proxy';
 import url from 'url';
 
+import config from '../config';
 import webpackConfig from '../build/webpack.config';
 import WebpackDevServer from 'webpack-dev-server';
 import webpackHMRMiddleware from 'webpack-hot-middleware';
+
+const paths = config.utilsPaths;
 
 export const apply = (app) => {
     const debug = _debug('app:server:webpack');
@@ -28,7 +31,7 @@ export const apply = (app) => {
     });
 
     const server = new WebpackDevServer(compiler, {
-        contentBase: __dirname,
+        contentBase: paths.public(),
         hot: true,
         quiet: false,
         noInfo: false,

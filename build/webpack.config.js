@@ -27,8 +27,8 @@ module.exports = {
                 presets: ['es2015', 'react', 'stage-2', 'node5']
             }
         }, {
-      	    test: /\.scss$/,
-      	    loaders: ['style', 'css', 'sass']
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract('css!sass')
         }]
     },
     output: {
@@ -36,7 +36,7 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true }),
+        new ExtractTextPlugin('[name].css', { allChunks: true }),
         new webpack.DefinePlugin(config.default.globals),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
