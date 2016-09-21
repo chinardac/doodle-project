@@ -41,7 +41,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: paths.public('index.html'),
+      template: paths.site('static/index.html'),
       hash: false,
       filename: 'index.html',
       inject: 'body',

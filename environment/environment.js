@@ -1,26 +1,29 @@
 const env = {};
 
-env.tokens = {
-  cinemalytics: '65E96E43794A11ECA130C3CFB1EB8318'
+env.cinemalytics = {
+  token: '65E96E43794A11ECA130C3CFB1EB8318',
+  hostname: 'api.cinemalytics.com',
+  pathname: '/v1',
+  protocol: 'https:'
 };
+
+env.omdbApi = {
+  protocol: 'http:',
+  hostname: 'www.omdbapi.com',
+  token: '236ffef2',
+  pathname: '/'
+}
 
 env.express = {
   protocol: "http",
   hostname: "localhost",
-  port: "3030"
-};
-
-env.mongo = {
-  protocol: "mongodb",
-  hostname: "localhost",
-  port: "27017",
-  path: "/doodle"
+  port: "52671"
 };
 
 env.webpack = {
   protocol: "http",
   hostname: "localhost",
-  port: "52671"
+  port: "8081"
 };
 
 env.getConfigUrl = (config) => {

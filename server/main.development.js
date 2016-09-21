@@ -4,6 +4,7 @@ import express from 'express';
 import webpack from 'webpack';
 import proxy from 'express-request-proxy';
 import url from 'url';
+import { MongoClient } from 'mongodb';
 
 import config from '../config';
 import webpackConfig from '../build/webpack.config';
@@ -20,6 +21,14 @@ export const apply = (app) => {
   const compiler = webpack(webpackConfig);
   app.use(webpackHMRMiddleware(compiler));
 
+  MongoClient.connect('mongodb://chinar.dac:8800578234@ds021346.mlab.com:21346/doodle', (err, database) => {
+      app.use((req, res, next) => {
+          req.db = database;
+          console.log(req.db);
+          next();
+      });
+  });
+
   app.use('/*', (req, res, next) => {
     let suffix = '/';
 
@@ -27,7 +36,7 @@ export const apply = (app) => {
       suffix = req.baseUrl;
     }
 
-    proxy({ url: url.parse(`http://localhost:8081${suffix}`) })(req, res, next);
+    proxy({ url: url.parse(`http://localhost:3030${suffix}`) })(req, res, next);
   });
 
   const server = new WebpackDevServer(compiler, {
@@ -41,5 +50,5 @@ export const apply = (app) => {
     }
   });
 
-  server.listen(8081, 'localhost', _.noop);
+  server.listen(3030, 'localhost', _.noop);
 };

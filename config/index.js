@@ -15,7 +15,7 @@ const config = {
   // Server Configuration
   // ----------------------------------
   serverHost: 'localhost',
-  serverPort: process.env.PORT || 3000,
+  serverPort: process.env.PORT || 52671,
   serverProtocol: process.env.PROTOCOL || 'http:',
   sessionSecret: 'ChinarDoodle',
 

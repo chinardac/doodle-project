@@ -2,7 +2,7 @@ import appServer from '../server/main';
 import _debug from 'debug';
 
 const debug = _debug('app:bin:server');
-const port = 3000;
+const port = 52671;
 const host = 'localhost';
 
 appServer.listen(port);
