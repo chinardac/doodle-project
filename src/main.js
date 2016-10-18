@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   onChange = (state) => {
-    console.log(state);
+    console.log('State: ' ,state);
   }
 
   render() {
