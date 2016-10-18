@@ -3,7 +3,9 @@ import axios from 'axios';
 
 const movieController = {
   getMovies: (req, res, next) => {
-    res.json('something!');
+    req.db.collection('imdbMovies').aggregate([{$limit: 10}]).toArray((err, results) => {
+      res.json(results);
+    });
   }
 };
 

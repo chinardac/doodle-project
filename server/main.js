@@ -1,22 +1,17 @@
 import express from 'express';
 import { MongoClient } from 'mongodb';
 
+import env from '../environment/environment';
 import logger from './middlewares/logger';
 import routes from './routes';
 import { apply } from './main.development';
 
 const app = express();
-const port = 52671;
+const { port } = env.express;
 
-app.locals = {
-  hostname: 'localhost',
-  port,
-  protocol: 'http:'
-};
-
-MongoClient.connect('mongodb://chinar.dac:8800578234@ds021346.mlab.com:21346/doodle', (err, database) => {
+MongoClient.connect(env.getMongoUrl(), (err, database) => {
     if(err) {
-        console.err(err);
+        console.log(err);
     }
 
     app.use((req, res, next) => {

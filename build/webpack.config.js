@@ -7,6 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var paths = config.default.utilsPaths;
 
 module.exports = {
+  devtool: 'source-map', 
   resolve: {
     root: paths.site(),
     extensions: ['', '.js', '.jsx', '.json']

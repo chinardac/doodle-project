@@ -23,11 +23,20 @@ env.express = {
 env.webpack = {
   protocol: "http",
   hostname: "localhost",
-  port: "8081"
+  port: "3030"
 };
+
+env.mongo = {
+  username: "chinar.dac",
+  password: "8800578234"
+}
 
 env.getConfigUrl = (config) => {
   return `${config.protocol}://${config.hostname}:${config.port}${config.path ? `${config.path}` : ``}`;
+};
+
+env.getMongoUrl = () => {
+  return `mongodb://${env.mongo.username}:${env.mongo.password}@ds021346.mlab.com:21346/doodle`;
 };
 
 module.exports = env;
